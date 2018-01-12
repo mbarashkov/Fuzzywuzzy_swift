@@ -32,18 +32,15 @@ public extension String {
 
         let scores = commonPairs.map { (pair) -> Float in
             /// filter out pairs that are too short ( < 20% of the lenght of the shoter string )
-            if pair.len * 5 < shorter.characters.count {
+            if pair.len * 10 < shorter.characters.count {
                 return 0
             }
-            //str2.distance(from: pair.str2SubRange.lowerBound, to: longer.endIndex)
             let sub2RemLen = longer.distance(from: pair.str2SubRange.lowerBound, to: longer.endIndex)
             var longSubStart = pair.str2SubRange.lowerBound
             if sub2RemLen < shorter.characters.count {
-                longSubStart = shorter.index(longSubStart, offsetBy: sub2RemLen - shorter.characters.count)
-                //longSubStart = longSubStart.advanced(by: sub2RemLen - shorter.characters.count)
+                longSubStart = longer.index(longSubStart, offsetBy: sub2RemLen - shorter.characters.count)
             }
-            let longSubEnd = longer.index(longSubStart, offsetBy: shorter.characters.count - 1)
-            //let longSubEnd = longSubStart.advanced(by: shorter.characters.count-1)
+            let longSubEnd = longer.index(longSubStart, offsetBy: shorter.characters.count)
             let closedRange: Range = longSubStart..<longSubEnd
             let longSubStr = String(longer[closedRange])
             let r = StringMatcher(str1: shorter, str2: longSubStr).fuzzRatio()
