@@ -49,8 +49,8 @@ class CommonSubstrings: NSObject {
                             len += 1
                     }
 
-                    let sub1Range = Range((str1.index(str1.startIndex, offsetBy: i-1))..<str1.index(str1.startIndex, offsetBy: i-1+len-1))
-                    let sub2Range = Range((str2.index(str2.startIndex, offsetBy: j-1))..<str2.index(str2.startIndex, offsetBy: j-1+len-1))
+                    let sub1Range = str1.index(str1.startIndex, offsetBy: i-1)..<str1.index(str1.startIndex, offsetBy: i-1+len-1)
+                    let sub2Range = str2.index(str2.startIndex, offsetBy: j-1)..<str2.index(str2.startIndex, offsetBy: j-1+len-1)
                     pairs.append(CommonSubstringPair.init(str1SubRange: sub1Range, str2SubRange: sub2Range, len: len))
                 }
             }
